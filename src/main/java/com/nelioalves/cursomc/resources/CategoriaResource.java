@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nelioalves.cursomc.domain.Categoria;
+import com.nelioalves.cursomc.resources.exception.ResourceExceptionHandler;
 import com.nelioalves.cursomc.services.CategoriaService;
 
+ 
 @RestController
 @RequestMapping(value = "/categorias")
-public class CategoriaResource {
+public class CategoriaResource  extends ResourceExceptionHandler{
 	@Autowired
 	private CategoriaService service;
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<?> find(@PathVariable Integer id)  {
 		
 		Categoria obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
