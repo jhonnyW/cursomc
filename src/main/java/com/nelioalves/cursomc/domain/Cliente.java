@@ -50,9 +50,18 @@ private static final long serialVersionUID = -6203231007632033840L;
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
-
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 	public TipoCliente getTipo() {
 		return TipoCliente.toEnum(tipo);
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public void setTipo(TipoCliente tipo) {
