@@ -18,12 +18,10 @@ public class Pedido  {
     private Integer id;
     @JsonFormat(pattern = "dd/MM/YYYY HH:mm")
     private Date instante;
-    @JsonManagedReference
-    @ManyToOne
+     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
     @ManyToOne
     @JoinColumn(name = "endereco_de_entrega_id")
