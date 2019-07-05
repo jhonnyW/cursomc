@@ -21,4 +21,8 @@ private CategoriaRepository repo;
 				("Objeto não encontrado! Id: " + id ));
 			
 	}
+	public Categoria insert(Categoria obj){
+
+		return repo.save(obj);
+	}
 }
