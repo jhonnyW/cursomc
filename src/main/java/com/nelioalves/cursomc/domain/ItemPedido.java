@@ -1,5 +1,7 @@
 package com.nelioalves.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Objects;
@@ -9,6 +11,7 @@ public class ItemPedido {
     private Integer quantidade;
     private Double preco;
     @EmbeddedId
+    @JsonIgnore
     private ItemPedidoPK id = new ItemPedidoPK();
 
     public ItemPedido() {
@@ -34,7 +37,7 @@ public class ItemPedido {
     public int hashCode() {
         return Objects.hash(id);
     }
-
+@JsonIgnore
     public Pedido getPedido(){
         return id.getPedido();
     }

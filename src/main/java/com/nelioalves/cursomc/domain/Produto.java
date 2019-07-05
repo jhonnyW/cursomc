@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable{
@@ -35,9 +36,10 @@ public class Produto implements Serializable{
 	joinColumns= @JoinColumn(name = "produto_id"))
 	private List<Categoria> categorias = new ArrayList<>();
 	@OneToMany(mappedBy = "id.pedido")
+	@JsonIgnore
 	private Set<ItemPedido> items = new HashSet<>();
 
-
+	@JsonIgnore
 	public List<Pedido> getPedidos(){
 		List<Pedido> lista = new ArrayList<>();
 		items.forEach( x -> lista.add(x.getPedido()));
