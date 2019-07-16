@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Objects;
+
 @Entity
 public class ItemPedido {
     private Double desconto;
@@ -24,6 +25,7 @@ public class ItemPedido {
         this.id.setPedido(pedido);
         this.id.setProduto(produto);
     }
+
     public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
         this.desconto = desconto;
         this.quantidade = quantidade;
@@ -31,6 +33,7 @@ public class ItemPedido {
         this.id.setPedido(pedido);
         this.id.setProduto(produto);
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,13 +46,19 @@ public class ItemPedido {
     public int hashCode() {
         return Objects.hash(id);
     }
-@JsonIgnore
-    public Pedido getPedido(){
+
+    public double getSubTotal(){
+        return (preco-desconto) * quantidade;
+    }
+    @JsonIgnore
+    public Pedido getPedido() {
         return id.getPedido();
     }
-    public Produto getProduto(){
+
+    public Produto getProduto() {
         return id.getProduto();
     }
+
     public Double getDesconto() {
         return desconto;
     }

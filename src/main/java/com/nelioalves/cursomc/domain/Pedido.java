@@ -11,17 +11,17 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Pedido  {
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @JsonFormat(pattern = "dd/MM/YYYY HH:mm")
     private Date instante;
-     @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
     @ManyToOne
     @JoinColumn(name = "endereco_de_entrega_id")
@@ -29,12 +29,8 @@ public class Pedido  {
     @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedido> items = new HashSet<>();
 
-    public Set<ItemPedido> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<ItemPedido> items) {
-        this.items = items;
+    public double getValorToTal() {
+        return items.stream().mapToDouble(x -> x.getPreco()).sum();
     }
 
     @Override
@@ -101,4 +97,13 @@ public class Pedido  {
     public void setInstante(Date instante) {
         this.instante = instante;
     }
+
+    public Set<ItemPedido> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<ItemPedido> items) {
+        this.items = items;
+    }
+
 }
