@@ -24,7 +24,13 @@ public class ItemPedido {
         this.id.setPedido(pedido);
         this.id.setProduto(produto);
     }
-
+    public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
+        this.desconto = desconto;
+        this.quantidade = quantidade;
+        this.preco = preco;
+        this.id.setPedido(pedido);
+        this.id.setProduto(produto);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
